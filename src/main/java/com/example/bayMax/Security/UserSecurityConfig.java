@@ -31,12 +31,13 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
         http
 
                 .authorizeRequests()
-                .antMatchers("/", "/signup","/login","/*.css","/*.PNG").permitAll()
+                .antMatchers("/", "/signup","/login","/*.css","/*.PNG","/*.PNG","/*.jpg").permitAll()
                 .antMatchers("/resources/**").permitAll()
                 .antMatchers("/*.css").permitAll()
 //                .antMatchers("/*.js").permitAll()
                 .antMatchers("/*.PNG").permitAll()
-//                .antMatchers("/*.jpg").permitAll()
+                .antMatchers("/*.png").permitAll()
+                .antMatchers("/*.jpg").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
                 .anyRequest().authenticated()//any other pages you have to be authenticated
                 .and()
