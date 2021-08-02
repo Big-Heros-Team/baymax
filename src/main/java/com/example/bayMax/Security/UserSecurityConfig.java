@@ -38,6 +38,7 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/*.PNG").permitAll()
 //                .antMatchers("/*.jpg").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
+                .antMatchers("/doctors").hasAuthority("ADMIN")
                 .anyRequest().authenticated()//any other pages you have to be authenticated
                 .and()
                 .formLogin()

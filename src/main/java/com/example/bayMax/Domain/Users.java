@@ -1,11 +1,13 @@
 package com.example.bayMax.Domain;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.Collection;
+import java.time.YearMonth;
+import java.util.*;
 
 @Entity
 @Table(name="users")
@@ -22,13 +24,42 @@ public class Users implements UserDetails {
     private String bloodType;
     private Long nationalId;
 
+    private int old;
+
     @Column(unique = true)
     private String username;
     private String password;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id",referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id",referencedColumnName = "id"))
+    private Set<Roles> roles=new HashSet<>();
+
+
+    @OneToMany(mappedBy = "users",cascade = CascadeType.ALL )
+    private List<Record> records= new ArrayList<>();
+
+    public List<Record> getRecords() {
+        return records;
+    }
 
     public Users(){
     }
+
+    @OneToMany(mappedBy = "user")
+    List<Reviews> reviews;
+
+
+    @OneToMany(mappedBy = "patient")
+    Set<Requests> requests;
+
+    @OneToMany(mappedBy = "doctor")
+    Set<Requests> requests2;
+
+
+
     public Users(String firstname, String lastname, Date dateOfBirth, String location, String bloodType, Long nationalId, String username, String password) {
         this.firstname = firstname;
         this.lastname = lastname;
@@ -38,6 +69,14 @@ public class Users implements UserDetails {
         this.nationalId = nationalId;
         this.username = username;
         this.password = password;
+        this.old= calculateAge(dateOfBirth);
+    }
+    public int calculateAge(Date dateOfBirth){
+        int year = YearMonth.now().getYear();
+
+        int age= year - dateOfBirth.getYear();
+
+        return age;
     }
 
     public Long getId() {
@@ -54,6 +93,10 @@ public class Users implements UserDetails {
 
     public String getLastname() {
         return lastname;
+    }
+
+    public String getFullName(){
+        return firstname+" "+lastname;
     }
 
     public void setLastname(String lastname) {
@@ -122,7 +165,14 @@ public class Users implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        Set<Roles> roles = this.getRoles();
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+
+        for (Roles role : roles) {
+            authorities.add(new SimpleGrantedAuthority(role.getName()));
+        }
+
+        return authorities;
     }
 
     public String getPassword() {
@@ -133,9 +183,27 @@ public class Users implements UserDetails {
         this.password = password;
     }
 
+    public Set<Roles> getRoles() {
+        return roles;
+    }
 
+    public void addRole(Roles role ) {
+        this.roles.add(role);
+    }
 
+    public List<Reviews> getReviews() {
+        return reviews;
+    }
 
+    public void addReview(Reviews review) {
+        this.reviews.add(review);
+    }
 
+    public Set<Requests> getRequests() {
+        return requests2;
+    }
 
+    public Set<Requests> getRequests2() {
+        return requests2;
+    }
 }

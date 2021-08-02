@@ -1,11 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="">
+<html lang="en"  xmlns:th="https://www.thymeleaf.org">
 <head th:replace="fragment :: head" xmlns:th="http://www.w3.org/1999/xhtml" >
 <body>
 <header th:replace="fragment :: header"></header>
 
 
 <h1>hello</h1>
+
+<div th:each="doctor :${doctors}">
+    <ul >
+        <li th:text="${doctor.getFullName()}"></li>
+     <div th:if="${doctor.getReviews()!=null}" th:each="review: ${doctor.getReviews()}">
+         <li th:text="${review.body}"></li>
+     </div>
+    </ul>
+</div>
+
+
 
 <footer th:replace="fragment :: footer"></footer>
 </body>

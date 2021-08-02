@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="">
+<head th:replace="fragment :: head" xmlns:th="http://www.w3.org/1999/xhtml" >
+<body>
+<header th:replace="fragment :: header"></header>
+
+<main>
+    <h> Patient Details: </h>
+
+    <table>
+        <tr>
+            <th> First Name </th>
+            <th> Last Name</th>
+            <th> date Of Birth</th>
+            <th> Location </th>
+            <th> Blood Type</th>
+
+        </tr>
+        <tr>
+            <td th:text="${user.firstname}"></td>
+            <td th:text="${user.lastname}"></td>
+            <td th:text="${user.dateOfBirth}"></td>
+            <td th:text="${user.location}"></td>
+            <td th:text="${user.bloodType}"></td>
+
+        </tr>
+    </table>
+<!--    th:if="${ not#lists.isEmpty(records) }"-->
+
+    <div class="recordContainer" >
+
+
+        <div th:each="record:${user.records} ">
+            <h1>hello</h1>
+            <p th:text="${record.drugs} "></p>
+            <p th:text="${record.medicalDiagosis} "></p>
+            <p th:text="${record.visitDate} "></p>
+
+        </div>
+    </div>
+
+<!--    authorized form -->
+
+<!--    <div sec:authorize ="hasRole('DOCTOR')">-->
+<!--        <form th:action="@{/addrecord}" th:method="post">-->
+<!--            <label  th:for="drugs"> Drugs: </label>-->
+<!--            <input th:type="text" th:name="drugs" th:id="drugs">-->
+<!--    -->
+<!--            <label  th:for="diagnostic"> Medical Diagnostic: </label>-->
+<!--            <input th:type="text" th:name="diagnostic" th:id="diagnostic">-->
+<!--    -->
+<!--        </form>-->
+<!--    </div>-->
+
+
+
+    <form  th:method="post" th:action="@{/addrecord/{id}(id=${user.id})}">
+        <label  th:for="drugs"> Drugs: </label>
+        <input th:type="text" th:name="drugs" th:id="drugs">
+
+        <label  th:for="diagnostic"> Medical Diagnostic: </label>
+        <input th:type="text" th:name="diagnostic" th:id="diagnostic">
+        <input type="submit" th:value="Submit">
+
+    </form>
+</main>
+
+<footer th:replace="fragment :: footer"></footer>
+</body>
+</html>

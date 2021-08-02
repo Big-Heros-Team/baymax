@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+     >
+<head>
+    <meta charset="UTF-8">
+    <title>requests</title>
+</head>
+<body>
+<h1 th:text="'You have '+${requests.size()}+' requests'"></h1>
+<div th:each="request: ${requests}">
+    <form action="/requests" th:unless="${request.isAccepted()}" method="post">
+        <p th:text="${request.patient.getFullName()}"></p>
+        <input type="hidden" th:value="${request.patient.getId()}" name="id">
+        <input type="hidden" th:value="${request.id}" name="requestId">
+        <input  type="submit" value="Accept" th:value="true" name="accepted">
+        <input  type="submit" value="Ignore" th:value="false" name="accepted">
+
+    </form>
+
+</div>
+</body>
+</html>
