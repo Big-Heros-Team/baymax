@@ -60,6 +60,7 @@ public class Users implements UserDetails {
 
 
 
+
     public Users(String firstname, String lastname, Date dateOfBirth, String location, String bloodType, Long nationalId, String username, String password) {
         this.firstname = firstname;
         this.lastname = lastname;
