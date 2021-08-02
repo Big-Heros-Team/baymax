@@ -8,15 +8,13 @@
 <body>
 <h1 th:text="'You have '+${requests.size()}+' requests'"></h1>
 <div th:each="request: ${requests}">
-    <form action="/requests" th:unless="${request.isAccepted()}" method="post">
+    <form action="/requests" th:unless="${request.isAccepted()}" method="post" th:object="${request}">
         <p th:text="${request.patient.getFullName()}"></p>
         <input type="hidden" th:value="${request.patient.getId()}" name="id">
-        <input type="hidden" th:value="${request.id}" name="requestId">
+        <input type="hidden" th:value="${request}" name="request">
         <input  type="submit" value="Accept" th:value="true" name="accepted">
         <input  type="submit" value="Ignore" th:value="false" name="accepted">
-
     </form>
-
 </div>
 </body>
 </html>

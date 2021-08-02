@@ -4,34 +4,37 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Table(name="Requests")
+@IdClass(RequestsPK.class)
 public class Requests implements Serializable {
 
-    @EmbeddedId
-    private RequestsPK id;
-
+    @Id
 @ManyToOne
-@MapsId("patient_id")
-    @JoinColumn(name = "PATIENT_ID")
+@JoinColumn(name = "PATIENT_ID")
    private Users patient;
 
-
+@Id
 @ManyToOne
-@MapsId("doctor_id")
-    @JoinColumn(name = "DOCTOR_ID")
+@JoinColumn(name = "DOCTOR_ID")
    private Users doctor;
 
-boolean isAccepted;
+    @Column(name = "isAccepted")
+    private Boolean isAccepted;
 
     public Requests() {
     }
 
-    public Requests(Users patient, Users doctor, boolean isAccepted) {
+    public void setPatient(Users patient) {
         this.patient = patient;
-        this.doctor = doctor;
-        this.isAccepted = isAccepted;
     }
 
- 
+    public void setDoctor(Users doctor) {
+        this.doctor = doctor;
+    }
+
+    public void setAccepted(Boolean accepted) {
+        isAccepted = accepted;
+    }
 
     public Users getPatient() {
         return patient;
@@ -45,7 +48,5 @@ boolean isAccepted;
         return isAccepted;
     }
 
-    public void setAccepted(boolean accepted) {
-        isAccepted = accepted;
-    }
+
 }

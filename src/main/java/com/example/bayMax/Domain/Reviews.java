@@ -10,6 +10,8 @@ public class Reviews {
     private long id;
 
     private String body;
+    private String doctor;
+
 
     @ManyToOne
     @JoinColumn(name ="user_reviews_id" )
@@ -28,5 +30,21 @@ public class Reviews {
 
     public String getBody() {
         return body;
+    }
+
+    public String getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(String doctor) {
+        this.doctor = doctor;
+    }
+
+    public Users getUser() {
+        return user;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
     }
 }

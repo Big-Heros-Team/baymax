@@ -53,11 +53,10 @@ public class Users implements UserDetails {
 
 
     @OneToMany(mappedBy = "patient")
-    Set<Requests> requests;
+    Set<Requests> patientRequests =new HashSet<>();
 
     @OneToMany(mappedBy = "doctor")
-    Set<Requests> requests2;
-
+    Set<Requests> doctorRequests =new HashSet<>();
 
 
 
@@ -200,11 +199,11 @@ public class Users implements UserDetails {
         this.reviews.add(review);
     }
 
-    public Set<Requests> getRequests() {
-        return requests2;
+    public Set<Requests> getPatientRequests() {
+        return patientRequests;
     }
 
-    public Set<Requests> getRequests2() {
-        return requests2;
+    public Set<Requests> getDoctorRequests() {
+        return doctorRequests;
     }
 }
