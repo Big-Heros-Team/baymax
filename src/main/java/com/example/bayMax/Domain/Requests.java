@@ -9,14 +9,14 @@ import java.io.Serializable;
 public class Requests implements Serializable {
 
     @Id
-@ManyToOne
-@JoinColumn(name = "PATIENT_ID")
-   private Users patient;
+    @ManyToOne
+    @JoinColumn(name = "PATIENT_ID")
+    private Users patient;
 
-@Id
-@ManyToOne
-@JoinColumn(name = "DOCTOR_ID")
-   private Users doctor;
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "DOCTOR_ID")
+    private Users doctor;
 
     @Column(name = "isAccepted")
     private Boolean isAccepted;
