@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" >
-<head th:replace="fragment :: head" xmlns:th="http://www.w3.org/1999/xhtml" >
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragment :: head" >
 <body>
 <header th:replace="fragment :: header"></header>
-
-<main>
-    <h> Patient Details: </h>
-
+<main style="margin-top: 10%">
     <table>
         <tr>
             <th> First Name </th>
@@ -27,66 +25,76 @@
     </table>
 <!--    th:if="${ not#lists.isEmpty(records) }"-->
 
-    <div class="recordContainer" >
+<table>
+    <tr>
+        <th>Records</th>
+        <th>Date Of Records</th>
+        <th>Diagosis</th>
+        <th>Drugs</th>
+    </tr>
+    <tr th:each="record:${user.records} ">
+        <td th:text="${record.id} "></td>
+        <td th:text="${record.visitDate} "></td>
+        <td th:text="${record.medicalDiagosis} "></td>
+        <td >
+            <ul th:each="drug:${user.drugs}">
+                <li th:text="${drug.drugName} "></li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+<!--    <div class="recordContainer" >-->
 
 
-        <div th:each="record:${user.records} ">
-            <p th:text="${record.medicalDiagosis} "></p>
-            <p th:text="${record.visitDate} "></p>
+<!--        <div th:each="record:${user.records} ">-->
+<!--            <p th:text="${record.medicalDiagosis} "></p>-->
+<!--            <p th:text="${record.visitDate} "></p>-->
 
-        </div>
-
-
-    </div>
-
-    <div class="drugContainer" >
+<!--        </div>-->
 
 
-        <div th:each="drug:${user.drugs} ">
-            <p th:text="${drug.drugName} "></p>
-
-        </div>
-
-
-    </div>
-
-<!--    authorized form -->
-
-<!--    <div sec:authorize ="hasRole('DOCTOR')">-->
-<!--        <form th:action="@{/addrecord}" th:method="post">-->
-<!--            <label  th:for="drugs"> Drugs: </label>-->
-<!--            <input th:type="text" th:name="drugs" th:id="drugs">-->
-<!--    -->
-<!--            <label  th:for="diagnostic"> Medical Diagnostic: </label>-->
-<!--            <input th:type="text" th:name="diagnostic" th:id="diagnostic">-->
-<!--    -->
-<!--        </form>-->
 <!--    </div>-->
 
-    <div sec:authorize ="hasAuthority('DOCTOR')">
+<!--    <div class="drugContainer" >-->
+
+
+<!--        <div th:each="drug:${user.drugs} ">-->
+<!--            <p th:text="${drug.drugName} "></p>-->
+
+<!--        </div>-->
+
+
+<!--    </div>-->
+
+<hr style="color: black">
+
+    <div style="display: flex; flex-direction: column; height: 50vh ;margin-top: 10%; width: 40%; margin: auto"  sec:authorize ="hasAuthority('DOCTOR')">
 
         <form  th:method="post" th:action="@{/addrecord/{id}(id=${user.id})}" >
-<!--            <label  th:for="drugs"> Drugs: </label>-->
-<!--            <input th:type="text" th:name="drugs" th:id="drugs">-->
 
             <label  th:for="diagnostic"> Medical Diagnostic: </label>
-            <input th:type="text" th:name="diagnostic" th:id="diagnostic">
+            <textarea class="form-control"  th:name="diagnostic" th:id="diagnostic" rows="4" cols="50">
+               Add Medical Diagnostic
+            </textarea>
+            <br>
             <input type="submit" th:value="Submit">
 
         </form>
+        <br>
 
         <form th:action="@{/addDrug}" method="post" >
             <input type="hidden" th:name="userId" th:value="${user.Id}">
 
-            <select class="drugsList" th:name="drugId" >
+            <select class="form-control" th:name="drugId" >
                 <option value="0">Select Drug</option>
                 <option th:each="drug : ${drugs}"  th:value="${drug.getDrugId()}" th:text="${drug.getDrugName()}"></option>
             </select>
+            <br>
             <button type="submit">Add Drug</button>
         </form>
 
     </div>
-
 
 
 

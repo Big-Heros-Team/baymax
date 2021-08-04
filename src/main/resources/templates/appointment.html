@@ -5,26 +5,32 @@
 <body>
 <header th:replace="fragment :: header"></header>
 
-<div style="display: flex; flex-direction: column; height: 100vh">
-    <form action="/appointment" method="post">
+<div style="display: flex; flex-direction: column; height: 100vh ;margin-top: 10%" class="login-form">
+    <form action="/appointment" style="width: 45%;margin: auto" method="post">
 
-
-        <select  id="doctorId" name="doctorId" >
+        <fieldset>
+            <legend style="font-size: x-large">Add Appointments</legend>
+            <label for="doctorId">Doctor Name</label>
+        <select class="form-control" id="doctorId" name="doctorId" >
             <option value="" selected disabled hidden>Your Doctor</option>
             <option th:each="doctor: ${doctors}" th:text="${doctor.firstname}"  th:value="${doctor.getId()}"  >
             </option>
-
-
         </select>
+            <br>
 
-        <label for="date"> Time </label>
-        <input type="date" name="date" id="date">
-        <select  id="timeId" name="time" >
+        <label for="date"> Date </label>
+        <input class="form-control" type="date" name="date" id="date">
+            <br>
+            <label>Time</label>
+        <select class="form-control" id="timeId" name="time" >
             <option th:each="time: ${times}" th:text="${time}+':00'"  th:value="${time}"  >
             </option>
         </select>
+            <br>
         <input type="hidden" name="id" th:value="${patient.getId()}">
         <input type="submit" value="submit">
+            </fieldset>
+
     </form>
 </div>
 
