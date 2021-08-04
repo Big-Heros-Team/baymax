@@ -3,6 +3,8 @@
 <head th:replace="fragment :: head" xmlns:th="http://www.w3.org/1999/xhtml" >
 
 <body>
+<header th:replace="fragment :: header"></header>
+
 <div class="login-form">
     <form action="#" th:action="@{/doctors}" method="post">
         <h1>Add a doctor</h1>
@@ -41,5 +43,8 @@
         <input type="submit" class="btn btn-black" value="Signup"></input>
     </form>
 </div>
+
+<footer th:replace="fragment :: footer"></footer>
+
 </body>
 </html>

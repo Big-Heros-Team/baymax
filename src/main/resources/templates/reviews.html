@@ -4,6 +4,8 @@
       xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="fragment :: head" xmlns:th="http://www.w3.org/1999/xhtml" >
 <body>
+<header th:replace="fragment :: header"></header>
+
 
 <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
@@ -12,10 +14,6 @@
 
 
 <div class="spacer2"></div>
-<center>
-    Crafted by : <a href="http://codersandip.com/" target="_blank">Sandip Das</a> <br>
-    Warning: Do not copy paste our original content in your website, like client name, review, images, etc.
-</center>
 <div class="spacer"></div>
 
 
@@ -26,13 +24,13 @@
 
         <div class="content" th:each="review : ${reviews}"> <!-- slides -->
             <div class="thumbnail">
-                <img src="https://image.flaticon.com/icons/png/512/21/21104.png">
+                <img class="reviewImg" src="https://image.flaticon.com/icons/png/512/21/21104.png">
             </div>
             <div class="btnNtxt">
                 <div class="sdAllContent">
 
                     <div class="sd_scroll">
-                        <h2 th:text="'Doctor Name: '+${review.doctor}"></h2>
+                        <h2 class="sdCustomSliderHeadig" th:text="'Doctor Name: '+${review.doctor}"></h2>
                         <h1 class="sdCustomSliderHeadig" th:text="${review.body}"></h1>
                     </div>
                     <p class="SdClientName">Posted By </p>
@@ -55,5 +53,8 @@
 
     });
 </script>
+
+<footer th:replace="fragment :: footer"></footer>
+
 </body>
 </html>

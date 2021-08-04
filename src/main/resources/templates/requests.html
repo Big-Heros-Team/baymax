@@ -3,19 +3,28 @@
      >
 <head th:replace="fragment :: head" xmlns:th="http://www.w3.org/1999/xhtml" >
 
-<body>
-<h1 th:text="'You have '+${requests.size()}+' requests'"></h1>
+<body style="display: flex; flex-direction: column; height: 100vh">
+<header th:replace="fragment :: header"></header>
+<div>
+<span th:if="${requests.size() == 0}"><h1>There is no pending requests</h1></span>
+<span th:unless="${requests.size() == 0}"></span></div>
+
+<!--<h1 th:text="'You have '+${requests.size()}+' requests'"></h1>-->
 <div th:each="request: ${requests}">
     <form action="/requests" th:unless="${request.isAccepted()}" method="post" th:object="${request}">
         <p th:text="${request.patient.getFullName()}"></p>
         <p th:text="'Created at: '+${request.getCreatedAt()}"></p>
         <input type="hidden" th:value="${request.patient.getId()}" name="id">
         <input type="hidden" th:value="${request}" name="request">
-        <input  type="submit" th:text="Accept" th:value="true" name="accepted">
-        <input  type="submit" th:text="Ignore" th:value="false" name="accepted">
+        <input  type="submit"  th:value="Accept" name="accepted">
+        <input  type="submit"  th:value="Ignore" name="accepted">
+
 
     </form>
 
 </div>
+
+<footer style="margin-top: auto" th:replace="fragment :: footer"></footer>
+
 </body>
 </html>

@@ -15,6 +15,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Controller
@@ -90,7 +91,7 @@ public class RequestsController {
     }
 
     @PostMapping("/requests")
-    public RedirectView acceptRequests(Principal principal, long id, boolean accepted, Requests Srequest) {
+    public RedirectView acceptRequests(Principal principal, long id, String accepted) {
         Users doctor=userRepository.findUsersByUsername(principal.getName());
         Users patient=userRepository.findById(id).orElseThrow();
         Requests request=new Requests();
@@ -101,7 +102,7 @@ public class RequestsController {
                 break;
             }
         }
-        if (accepted) {
+        if (Objects.equals(accepted, "Accept")) {
             request.setAccepted(true);
             requestsRepository.save(request);
         } else {

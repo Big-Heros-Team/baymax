@@ -31,7 +31,7 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
         http
 
                 .authorizeRequests()
-                .antMatchers("/", "/signup","/login","/*.css","/*.PNG","/H2-console/**", "/addDrug","/UserDrugs", "https://dailymed.nlm.nih.gov/dailymed/services/v2/*").permitAll()
+                .antMatchers("/", "/signup","/login","/*.css","/*.PNG","/H2-console/**", "/addDrug","/UserDrugs", "https://dailymed.nlm.nih.gov/dailymed/services/v2/*","/reviews").permitAll()
                 .antMatchers("/","/about", "/signup","/login","/*.css","/*.PNG","/*.png","/*.js","/*.svg","/*.ttf","/resources/**","/fonts/**","/css/**","/contactform/**","/img/**","/js/**").permitAll()
                 .antMatchers("/resources/**").permitAll()
                 .antMatchers("/*.css").permitAll()
@@ -40,6 +40,7 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/*.jpg").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/doctors","/delete").hasAuthority("ADMIN")
+                .antMatchers("/patients").hasAuthority("DOCTOR")
                 .antMatchers("/addReviews").hasAuthority("USER")
                 .anyRequest().authenticated()//any other pages you have to be authenticated
                 .and()

@@ -3,19 +3,31 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="http://www.w3.org/1999/xhtml">
-<head th:replace="fragment :: head" xmlns:th="http://www.w3.org/1999/xhtml" >
+<head th:replace="fragment :: head" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <body>
-<div >
+<header th:replace="fragment :: header"></header>
 
-  <form action="#" th:action="@{/addReviews}" method="post">
-    <select name="id">
-      <option th:each="doctor:${doctors}" th:text="${doctor.getFullName()}" th:value="${doctor.getId()}"></option>
-    </select>
-    <label>Review</label>
-    <textArea name="body"></textArea>
-    <input type="submit">
-  </form>
+<div style="display: flex; flex-direction: column; height: 50vh ;margin-top: 10%" class="login-form">
+    <fieldset>
+        <legend style="font-size: x-large">Add Review</legend>
+        <form action="#" style="width: 45%;margin: auto" th:action="@{/addReviews}" method="post">
+            <label>Doctor Name</label>
+            <select class="form-control" name="id">
+                <option th:each="doctor:${doctors}" th:text="${doctor.getFullName()}"
+                        th:value="${doctor.getId()}"></option>
+            </select>
+            <br>
+            <label>Review</label>
+            <textArea class="form-control" name="body"></textArea>
+            <input type="submit">
+            <br>
+            <br>
+        </form>
+    </fieldset>
 </div>
+
+<footer th:replace="fragment :: footer"></footer>
+
 </body>
 </html>

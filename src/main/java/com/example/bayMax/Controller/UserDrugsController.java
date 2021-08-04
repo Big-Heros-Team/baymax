@@ -31,14 +31,14 @@ public class UserDrugsController {
         return "UserDrugs";
     }
 
-    @PostMapping("/addDrug")
-    public RedirectView addDrug(@RequestParam Long userId, @RequestParam Long drugId) {
-        if (drugId != 0) {
-            userService.assignDrugToUser(userId, drugId);
-        }
-
-        //TODO: redirect to drugs form
-        return new RedirectView("/");
-    }
+//    @PostMapping("/addDrug")
+//    public RedirectView addDrug(@RequestParam Long userId, @RequestParam Long drugId) {
+//        if (drugId != 0) {
+//            userService.assignDrugToUser(userId, drugId);
+//        }
+//
+//        //TODO: redirect to drugs form
+//        return new RedirectView("/");
+//    }
 
 }

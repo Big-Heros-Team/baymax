@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface RequestsRepository extends JpaRepository<Requests,Long> {
     List<Requests> findByPatient(Users patient);
+    List<Requests> findAllByDoctorAndIsAccepted(Users doctor, boolean isAccepted );
+
 }

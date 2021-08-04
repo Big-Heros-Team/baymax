@@ -9,7 +9,6 @@ body {
 	font-family: 'Open Sans', sans-serif;
 	line-height: 20px;
 	color: #999999;
-	font-size: 300;
 	font-size: 16px;
 }
 ol, ul {
@@ -186,6 +185,7 @@ body > div{
     padding: 50px;
     padding-left: 7%;
     background-color: aliceblue;
+    margin-bottom: 5%;
 }
 #profileDiv > p:nth-child(6){
     -webkit-text-size-adjust: 100%;
@@ -230,6 +230,77 @@ body > div{
     left: 65px;
     top: 12px;
 }
+body > div.buttons{
+    outline: none;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    font-family: 'Open Sans', sans-serif;
+    line-height: 20px;
+    color: #999999;
+    font-size: 16px;
+    box-sizing: border-box;
+    margin-top: 7%;
+    margin-left: 2%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    bottom: 172px;
+    right: 16px;
+}
+body > div.buttons > a:nth-child(2){
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    font-family: 'Open Sans', sans-serif;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    margin-top: 30px;
+    padding: 10px 20px;
+    font-size: 12px;
+    background-color: rgba(12, 184, 182, 0.91);
+    border-radius: 3px;
+    color: #fff;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+table,tr, td, th{
+    border: 1px solid black;
+
+}
+body > main > table{
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    font-family: 'Open Sans', sans-serif;
+    line-height: 20px;
+    color: #999999;
+    font-size: 16px;
+    box-sizing: border-box;
+    outline: none;
+    background-color: transparent;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid;
+    width: 40%;
+    margin: auto;
+    margin-bottom: 10%;
+}
+ th, td {
+    text-align: center;
+}
+
+
 /***************************************
 banner
 ***************************************/

@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
@@ -75,6 +76,15 @@ public class UserController {
         return "profile";
     }
 
+    @GetMapping("/profile/{id}")
+    public String getUserProfilePage(Model model, @PathVariable Long id){
+
+        Users users = userRepository.findById(id).orElseThrow();
+
+        model.addAttribute("userInfo",users);
+        return "profile";
+    }
+
     // Add new users with user (patient) role
     @PostMapping("/signup")
     public RedirectView trySignUp(@RequestParam String firstname,
@@ -113,7 +123,7 @@ public class UserController {
         Users newUser = new Users(firstname,lastname,dateOfBirth,location,bloodType,nationalId,username,bCryptPasswordEncoder.encode(password));
         newUser.addRole(rolesRepository.findRolesByName("DOCTOR"));
         userRepository.save(newUser);
-        return new RedirectView("/");
+        return new RedirectView("/myprofile");
     }
     @GetMapping("/doctors")
     public String getDoctorsForm(){

@@ -18,7 +18,7 @@ public class Drug {
     @Column(columnDefinition="TEXT")
     private String drugName;
 
-    @ManyToMany(mappedBy = "drugs" )
+    @ManyToMany(mappedBy = "drugs")
     private Set<Users> users = new HashSet<>();
 
     /**
