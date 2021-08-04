@@ -42,6 +42,7 @@ public class Users implements UserDetails {
     private List<Record> records= new ArrayList<>();
 
 
+
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_drugs",
@@ -49,17 +50,11 @@ public class Users implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "drug_id"))
     private final Set<Drug> drugs = new HashSet<>();
 
-
-    public List<Record> getRecords() {
-        return records;
-    }
-
-    public Users(){
-    }
-
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
     List<Reviews> reviews;
 
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
+    List<Blog> blogs;
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "patient")
     Set<Requests> patientRequests =new HashSet<>();
@@ -67,6 +62,10 @@ public class Users implements UserDetails {
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "doctor")
     Set<Requests> doctorRequests =new HashSet<>();
 
+
+
+    public Users(){
+    }
 
 
     public Users(String firstname, String lastname, Date dateOfBirth, String location, String bloodType, Long nationalId, String username, String password) {
@@ -86,6 +85,10 @@ public class Users implements UserDetails {
         int age= year - dateOfBirth.getYear();
 
         return age;
+    }
+
+    public List<Record> getRecords() {
+        return records;
     }
 
     public Long getId() {

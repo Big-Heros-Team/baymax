@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Blogs</title>
+</head>
+<body>
+<ul th:each="blog:${blogs}">
+    <li th:text="${blog.getBody()}"></li>
+</ul>
+
+<form action="#" th:action="@{/blogs}" method="post">
+
+    <h1 sec:authentication="name"></h1>
+
+    <label>Write a new blog: </label>
+    <textarea  name="body" rows="20" cols="80" placeholder="Please enter content"></textarea>
+
+    <input type="submit"  value="Submit"/>
+</form>
+</body>
+</html>
