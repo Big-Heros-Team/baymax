@@ -30,7 +30,7 @@ public class Users implements UserDetails {
     private String username;
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "user_role",
             joinColumns = @JoinColumn(name = "user_id",referencedColumnName = "id"),
@@ -57,14 +57,14 @@ public class Users implements UserDetails {
     public Users(){
     }
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
     List<Reviews> reviews;
 
 
-    @OneToMany(mappedBy = "patient")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "patient")
     Set<Requests> patientRequests =new HashSet<>();
 
-    @OneToMany(mappedBy = "doctor")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "doctor")
     Set<Requests> doctorRequests =new HashSet<>();
 
 

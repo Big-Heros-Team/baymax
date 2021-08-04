@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete</title>
+</head>
+<body>
+<form action="/delete" method="post">
+
+
+    <select  id="userId" name="userId" >
+
+        <option th:each="user: ${users}" th:text="${user.getFullName()}"  th:value="${user.getId()}"  >
+        </option>
+
+    </select>
+
+    <label for="confirm"> Type "delete" to confirm </label>
+    <input type="text" name="confirm" id="confirm">
+
+    <input type="submit" value="Delete">
+</form>
+</body>
+</html>
