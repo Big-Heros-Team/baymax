@@ -8,8 +8,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface RequestsRepository extends JpaRepository<Requests,Long> {
+public interface RequestsRepository extends JpaRepository<Requests, Long> {
     List<Requests> findByPatient(Users patient);
-    List<Requests> findAllByDoctorAndIsAccepted(Users doctor, boolean isAccepted );
+
+    List<Requests> findAllByDoctorAndIsAccepted(Users doctor, boolean isAccepted);
 
 }
