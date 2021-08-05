@@ -36,7 +36,7 @@ public class RequestsController {
         Users patient = userRepository.findUsersByUsername(principal.getName());
         Roles roles = rolesRepository.findRolesByName("DOCTOR");
         List<Users> doctors = userRepository.findAllByRoles(roles);
-        int[] times = {9,10,11,12,13,14,15,16};
+        int[] times = {9, 10, 11, 12, 13, 14, 15, 16};
         model.addAttribute("times", times);
         model.addAttribute("doctors", doctors);
         model.addAttribute("patient", patient);
@@ -44,7 +44,7 @@ public class RequestsController {
     }
 
     @PostMapping("/appointment")
-    public RedirectView selectAppointment(long id, long doctorId,Principal principal, String date, String time) {
+    public RedirectView selectAppointment(long id, long doctorId, Principal principal, String date, String time) {
         boolean isExist = false;
         Users patient = userRepository.findUsersByUsername(principal.getName());
         System.out.println("Doctor name = " + doctorId);
@@ -58,7 +58,7 @@ public class RequestsController {
         }
         if (!isExist) {
             Requests request = new Requests();
-            String appointDate = date + " at " + time+":00";
+            String appointDate = date + " at " + time + ":00";
             request.setCreatedAt(appointDate);
             request.setDoctor(doctor);
             request.setPatient(patient);
@@ -67,8 +67,8 @@ public class RequestsController {
 
         } else {
             System.out.println("Request is found");
-            for (Requests request: patient.getPatientRequests()
-                 ) {
+            for (Requests request : patient.getPatientRequests()
+            ) {
                 System.out.println(request);
             }
 //            System.out.println(doctor.getDoctorRequests().toArray().toString());
@@ -82,8 +82,8 @@ public class RequestsController {
         Users doctor = userRepository.findUsersByUsername(principal.getName());
         Set<Requests> requests = doctor.getDoctorRequests();
         model.addAttribute("requests", requests);
-        for (Requests request:doctor.getDoctorRequests()
-             ) {
+        for (Requests request : doctor.getDoctorRequests()
+        ) {
             System.out.println(request.getDoctor().getFullName());
         }
 
@@ -92,12 +92,12 @@ public class RequestsController {
 
     @PostMapping("/requests")
     public RedirectView acceptRequests(Principal principal, long id, String accepted) {
-        Users doctor=userRepository.findUsersByUsername(principal.getName());
-        Users patient=userRepository.findById(id).orElseThrow();
-        Requests request=new Requests();
-        for (Requests chosenRequest:doctor.getDoctorRequests()
-             ) {
-            if(chosenRequest.getPatient()==patient){
+        Users doctor = userRepository.findUsersByUsername(principal.getName());
+        Users patient = userRepository.findById(id).orElseThrow();
+        Requests request = new Requests();
+        for (Requests chosenRequest : doctor.getDoctorRequests()
+        ) {
+            if (chosenRequest.getPatient() == patient) {
                 request = chosenRequest;
                 break;
             }

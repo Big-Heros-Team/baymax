@@ -14,7 +14,7 @@ public class Reviews {
 
 
     @ManyToOne
-    @JoinColumn(name ="user_reviews_id" )
+    @JoinColumn(name = "user_reviews_id")
     Users user;
 
     public Reviews() {

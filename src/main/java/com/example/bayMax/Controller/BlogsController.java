@@ -23,12 +23,12 @@ public class BlogsController {
     UserRepository userRepository;
 
     @GetMapping("/blogs")
-    public String addBlog(){
+    public String addBlog() {
         return "blogs";
     }
 
     @PostMapping("/blogs")
-    public String blogForm(@RequestParam String body){
+    public String blogForm(@RequestParam String body) {
         Users user = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Users newUser = userRepository.findUsersByUsername(user.getUsername());
         Blog newBlog = new Blog(body);
@@ -38,7 +38,7 @@ public class BlogsController {
     }
 
     @GetMapping("/allBlogs")
-    public String getAllBlog(Model model){
+    public String getAllBlog(Model model) {
         List<Blog> blogs = blogsRepository.findAll();
         model.addAttribute("blogs", blogs);
         return "allBlogs";

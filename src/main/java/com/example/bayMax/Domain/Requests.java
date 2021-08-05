@@ -4,22 +4,22 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name="Requests")
+@Table(name = "Requests")
 @IdClass(RequestsPK.class)
-public class Requests  {
+public class Requests {
 
     private String createdAt;
 
 
     @Id
-@ManyToOne
-@JoinColumn(name = "PATIENT_ID")
-   private Users patient;
+    @ManyToOne
+    @JoinColumn(name = "PATIENT_ID")
+    private Users patient;
 
-@Id
-@ManyToOne
-@JoinColumn(name = "DOCTOR_ID")
-   private Users doctor;
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "DOCTOR_ID")
+    private Users doctor;
 
     @Column(name = "isAccepted")
     private Boolean isAccepted;

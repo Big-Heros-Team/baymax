@@ -15,7 +15,7 @@ public class Drug {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long drugId;
 
-    @Column(columnDefinition="TEXT")
+    @Column(columnDefinition = "TEXT")
     private String drugName;
 
     @ManyToMany(mappedBy = "drugs")

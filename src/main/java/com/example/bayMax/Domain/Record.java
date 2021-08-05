@@ -7,13 +7,13 @@ import java.util.Date;
 @Entity
 public class Record {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String medicalDiagosis;
     private Date visitDate;
 
     @ManyToOne
-    @JoinColumn(name="user_record")
+    @JoinColumn(name = "user_record")
     private Users users;
 
 
@@ -21,7 +21,7 @@ public class Record {
     }
 
 
-    public Record(String medicalDiagosis,  Users users) {
+    public Record(String medicalDiagosis, Users users) {
 
         this.medicalDiagosis = medicalDiagosis;
         this.visitDate = new Date(System.currentTimeMillis());

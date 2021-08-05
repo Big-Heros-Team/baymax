@@ -12,5 +12,4 @@ public class RequestsPK implements Serializable {
     private Long doctor;
 
 
-
 }

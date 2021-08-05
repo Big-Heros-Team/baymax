@@ -58,7 +58,7 @@ public class recordController {
         Record newRecord = new Record(diagnostic, patient);
         newRecord = recodRepository.save(newRecord);
 
-        return new RedirectView("/records/"+id);
+        return new RedirectView("/records/" + id);
 
     }
 
@@ -69,25 +69,26 @@ public class recordController {
         }
 
         //TODO: redirect to drugs form
-        return new RedirectView("/records/"+userId);
+        return new RedirectView("/records/" + userId);
     }
 
 
     @GetMapping("/patients")
-    public String getPatients(Model m, Principal p){
+    public String getPatients(Model m, Principal p) {
 
 //        UserDetails userDetails= (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Users currentUser= userRepository.findUsersByUsername(p.getName());
-        List<Requests> request = requestsRepository.findAllByDoctorAndIsAccepted(currentUser,true);
-        List<Users> patients= new ArrayList<>();
+        Users currentUser = userRepository.findUsersByUsername(p.getName());
+        List<Requests> request = requestsRepository.findAllByDoctorAndIsAccepted(currentUser, true);
+        List<Users> patients = new ArrayList<>();
 
 
-        request.forEach((element)->{patients.add(element.getPatient());});
-        m.addAttribute("patients",patients);
+        request.forEach((element) -> {
+            patients.add(element.getPatient());
+        });
+        m.addAttribute("patients", patients);
 
         return "patients.html";
     }
-
 
 
 }
