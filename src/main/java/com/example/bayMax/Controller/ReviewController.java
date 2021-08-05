@@ -53,7 +53,7 @@ public class ReviewController {
     }
 
     // get add review form
-    @GetMapping("/addReviews")
+    @GetMapping("/addReviewsForm")
     public String getAddForm(Model model, Principal principal){
         Users newUser = userRepository.findUsersByUsername(principal.getName());
         List<Users> doctors = new ArrayList<>();
@@ -65,7 +65,6 @@ public class ReviewController {
             if (request.isAccepted() && reviewsRepository.findReviewsByUserAndDoctor(newUser ,request.getDoctor().getFullName()) != null){
                 requestsRepository.delete(request);
             }
-
         }
 
             model.addAttribute("doctors",doctors);

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragment :: head" xmlns:th="http://www.w3.org/1999/xhtml" >
+<body>
+<header th:replace="fragment :: header"></header>
+
+
+<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+
+<div class="spacer2"></div>
+<div class="spacer"></div>
+
+
+<div class="sd_master_wrapper">
+    <div class="sdtestBg2"></div>
+    <div class="sdtestBg3"></div>
+    <div class="slideshow">
+
+        <div class="content" th:each="blog : ${blogs}"> <!-- slides -->
+            <div class="thumbnail">
+                <img class="reviewImg" src="https://image.flaticon.com/icons/png/512/21/21104.png">
+            </div>
+            <div class="btnNtxt">
+                <div class="sdAllContent">
+
+                    <div class="sd_scroll">
+                        <h1 class="sdCustomSliderHeadig" th:text="${blog.getBody()}"></h1>
+                    </div>
+                    <p class="SdClientName">Posted By Doctor</p>
+                    <p class="SdClientDesc" th:text="${blog.getUser().getFullName()}"></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="spacer"></div>
+<script>
+    jQuery(document).ready(function ($) {
+        const $slickElement = $('.slideshow');
+
+        $slickElement.slick({
+            autoplay: true,
+            dots: false,
+        });
+
+    });
+</script>
+
+<footer th:replace="fragment :: footer"></footer>
+
+</body>
+</html>

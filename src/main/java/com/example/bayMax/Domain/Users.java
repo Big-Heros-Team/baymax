@@ -57,14 +57,14 @@ public class Users implements UserDetails {
     public Users(){
     }
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     List<Reviews> reviews;
 
 
-    @OneToMany(mappedBy = "patient")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "patient")
     Set<Requests> patientRequests =new HashSet<>();
 
-    @OneToMany(mappedBy = "doctor")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "doctor")
     Set<Requests> doctorRequests =new HashSet<>();
 
 

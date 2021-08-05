@@ -1,29 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head th:replace="fragment :: head" xmlns:th="http://www.w3.org/1999/xhtml" >
+<head th:replace="fragment :: head" xmlns:th="http://www.w3.org/1999/xhtml">
 <body style="display: flex; flex-direction: column; height: 100vh">
 <header th:replace="fragment :: header"></header>
 
 
-<div id="profileDiv" th:each="userInfo : ${userInfo}">
+<div id="profileDiv">
     <div style="margin-bottom:4%; color:#2d485f; font-family: none; margin-left: 20px;">Your Information:</div>
-    <img th:src="@{/img/image6.png}" class="profileImg" >
+    <img th:src="@{/img/image6.png}" class="profileImg">
     <div class="div2">Name: <span class="span" th:text="${userInfo.firstname}"></span><span class="span" th:text=" ' '+ ${userInfo.lastname}"></span></div>
+
     <div class="div3" th:text="'Age: '+${userInfo.dateOfBirth}"></div>
     <div class="div4" th:text="'Adress: '+${userInfo.location}"></div>
     <p class="h2" th:text="'Blood Type: '+${userInfo.bloodType}"></p>
     <p class="h2" th:text="'National ID: '+${userInfo.nationalId}"></p>
 </div>
-<div class="buttons">
-    <a sec:authorize="hasAuthority('USER')" href="/appointment"   class="btn btn-appoint">Appointment.</a>
-    <a sec:authorize="hasAuthority('USER')" href="/addReviews"  class="btn btn-appoint">Add Review</a>
-    <a sec:authorize="hasAuthority('USER')" th:href="@{/records/{id}(id=${userInfo.id})}" class="btn btn-appoint">Show Records</a>
+
+<div sec:authorize="hasAuthority('USER')" class="buttons">
+    <a href="/appointment" class="btn btn-appoint">Appointment.</a>
+    <a href="/addReviewsForm" class="btn btn-appoint">Add Review</a>
+    <a th:href="@{/records/{id}(id=${userInfo.id})}" class="btn btn-appoint">Show Records</a>
 </div>
-
-<!--<form th:action="@{/logout}" method="post">-->
-<!--    <input type="submit" value="Log Out">-->
-<!--</form>-->
-
 
 <footer th:replace="fragment :: footer"></footer>
 

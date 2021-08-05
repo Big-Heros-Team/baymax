@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragment :: head" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<body>
+<header th:replace="fragment :: header"></header>
+<div style="margin-top: 10%; color:black">
+    <ul style="margin-top: 20px" th:each="blog:${blogs}">
+        <li th:text="${blog.getBody()}"></li>
+    </ul>
+</div>
+
+<div style="margin-top: 2%">
+    <fieldset>
+        <legend style="font-size: x-large">Add Blog</legend>
+        <form action="#" th:action="@{/blogs}" method="post">
+
+            <h1 sec:authentication="name"></h1>
+
+            <label>Write a new blog: </label>
+            <textarea class="form-control" name="body" rows="20" cols="80"
+                      placeholder="Please enter content"></textarea>
+            <br>
+            <input type="submit" value="Submit"/>
+        </form>
+    </fieldset>
+</div>
+<footer th:replace="fragment :: footer"></footer>
+
+</body>
+</html>

@@ -18,11 +18,12 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
     UserService userService;
 
     @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
     }
 
@@ -31,17 +32,17 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
         http
 
                 .authorizeRequests()
-                .antMatchers("/", "/signup","/login","/*.css","/*.PNG","/H2-console/**", "/addDrug","/UserDrugs", "https://dailymed.nlm.nih.gov/dailymed/services/v2/*","/reviews").permitAll()
-                .antMatchers("/","/about", "/signup","/login","/*.css","/*.PNG","/*.png","/*.js","/*.svg","/*.ttf","/resources/**","/fonts/**","/css/**","/contactform/**","/img/**","/js/**").permitAll()
+                .antMatchers("/", "/signup", "/login", "/*.css", "/*.PNG", "/H2-console/**", "/addDrug", "/UserDrugs", "https://dailymed.nlm.nih.gov/dailymed/services/v2/*", "/reviews").permitAll()
+                .antMatchers("/", "/about", "/allBlogs", "/signup", "/login", "/*.css", "/*.PNG", "/*.png", "/*.js", "/*.svg", "/*.ttf", "/resources/**", "/fonts/**", "/css/**", "/contactform/**", "/img/**", "/js/**").permitAll()
                 .antMatchers("/resources/**").permitAll()
                 .antMatchers("/*.css").permitAll()
                 .antMatchers("/*.js").permitAll()
                 .antMatchers("/*.PNG").permitAll()
                 .antMatchers("/*.jpg").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
-                .antMatchers("/doctors").hasAuthority("ADMIN")
+                .antMatchers("/doctors", "/delete").hasAuthority("ADMIN")
                 .antMatchers("/patients").hasAuthority("DOCTOR")
-                .antMatchers("/addReviews").hasAuthority("USER")
+                .antMatchers("/addReviews", "/addReviewsForm", "/appointment").hasAuthority("USER")
                 .anyRequest().authenticated()//any other pages you have to be authenticated
                 .and()
                 .formLogin()

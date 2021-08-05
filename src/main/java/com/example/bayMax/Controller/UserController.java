@@ -22,6 +22,7 @@ import java.security.Principal;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 @Controller
@@ -98,8 +99,8 @@ public class UserController {
         newUser.addRole(rolesRepository.findRolesByName("USER"));
         userRepository.save(newUser);
 
-        UsernamePasswordAuthenticationToken authentication= new UsernamePasswordAuthenticationToken(newUser,null,new ArrayList<>());
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+//        UsernamePasswordAuthenticationToken authentication= new UsernamePasswordAuthenticationToken(newUser,null,new ArrayList<>());
+//        SecurityContextHolder.getContext().setAuthentication(authentication);
         return new RedirectView("/");
     }
 
@@ -124,10 +125,29 @@ public class UserController {
         userRepository.save(newUser);
         return new RedirectView("/myprofile");
     }
+
+
     @GetMapping("/doctors")
     public String getDoctorsForm(){
         return "doctors";
     }
 
+    // delete users
+    @PostMapping("/delete")
+    public RedirectView deleteUser(@RequestParam Long userId, @RequestParam String confirm){
+        if (confirm.toLowerCase(Locale.ROOT).trim().equals("delete")){
+            userRepository.deleteById(userId);
+        }
+        return new RedirectView("/delete");
+    }
+
+    // get delete form
+    @GetMapping ("/delete")
+    public String deleteForm(Model model){
+        List<Users> users = userRepository.findAll();
+        users.remove(0);
+        model.addAttribute("users",users);
+        return "delete";
+    }
 
 }

@@ -29,7 +29,7 @@ dependencies {
 	runtimeOnly 'org.postgresql:postgresql:42.2.23.jre7'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.3'
 	testImplementation 'org.springframework.security:spring-security-test:5.5.1'
-	implementation 'com.h2database:h2'
+	implementation 'com.h2database:h2:1.4.200'
 	implementation 'com.google.code.gson:gson:2.8.7'
 }
 

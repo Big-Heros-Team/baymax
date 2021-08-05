@@ -40,10 +40,13 @@
 
               <li class=""><a href="/about">About</a></li>
               <li sec:authorize="hasAuthority('ADMIN')"><a href="/doctors">Add Doctor </a></li>
+              <li sec:authorize="hasAuthority('ADMIN')"><a href="/delete">Delete User </a></li>
               <li sec:authorize="hasAuthority('DOCTOR')"><a href="/requests">Requests </a></li>
               <li sec:authorize="hasAuthority('DOCTOR')"><a href="/patients">Patients </a></li>
+              <li sec:authorize="hasAuthority('DOCTOR')"><a href="/blogs">Add Blog </a></li>
 
               <li class=""><a href="/reviews">Reviews</a></li>
+              <li class=""><a href="/allBlogs">Blogs</a></li>
 
 
 
