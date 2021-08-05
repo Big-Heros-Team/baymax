@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="en">
-<head th:replace="fragment :: head" xmlns:th="http://www.w3.org/1999/xhtml" >
+<head th:replace="fragment :: head" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <body>
 <header th:replace="fragment :: header"></header>
 
 
-        <div style="margin-top: 10%" class="login-form">
-            <fieldset>
-                <legend style="font-size: x-large"> Log In</legend>
+<div style="margin-top: 10%" class="login-form">
+    <fieldset>
+        <legend style="font-size: x-large"> Log In</legend>
 
-                <form action="#" th:action="@{/login}" method="post">
-                <div class="form-group">
+        <form action="#" th:action="@{/login}" method="post">
+            <div class="form-group">
 
-                    <label>User Name</label>
-                    <input type="text" name="username" class="form-control" placeholder="User Name">
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" name="password" class="form-control" placeholder="Password">
-                </div>
-                <input type="submit" class="btn btn-black" value="Login"></input>
-                <button class="buttonsign"><a class="buttonA" th:href="@{/signup}" >sign up</a></button>
+                <label>User Name</label>
+                <input type="text" name="username" class="form-control" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" class="form-control" placeholder="Password">
+            </div>
+            <input type="submit" class="btn btn-black" value="Login"></input>
+            <button class="buttonsign"><a class="buttonA" th:href="@{/signup}">sign up</a></button>
 
 
-            </form>
-            </fieldset>
-        </div>
+        </form>
+    </fieldset>
+</div>
 <footer th:replace="fragment :: footer"></footer>
 
 <script src="js/jquery.min.js"></script>

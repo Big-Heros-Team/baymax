@@ -8,9 +8,7 @@
 <div id="profileDiv">
     <div style="margin-bottom:4%; color:#2d485f; font-family: none; margin-left: 20px;">Your Information:</div>
     <img th:src="@{/img/image6.png}" class="profileImg">
-    <div class="div2">Name: <span class="span" th:text="${userInfo.firstname}"></span><span class="span"
-                                                                                            th:text=" ' '+ ${userInfo.lastname}"></span>
-    </div>
+    <div class="div2">Name: <span class="span" th:text="${userInfo.firstname}"></span><span class="span" th:text=" ' '+ ${userInfo.lastname}"></span></div>
 
     <div class="div3" th:text="'Age: '+${userInfo.dateOfBirth}"></div>
     <div class="div4" th:text="'Adress: '+${userInfo.location}"></div>
