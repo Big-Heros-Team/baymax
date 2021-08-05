@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="fragment :: head" xmlns:th="http://www.w3.org/1999/xhtml" >
+<head th:replace="fragment :: head" xmlns:th="http://www.w3.org/1999/xhtml">
 <body>
 <header th:replace="fragment :: header"></header>
 
@@ -8,9 +8,9 @@
 <form th:action="@{/addDrug}" method="post">
     <input type="hidden" th:name="userId" th:value="${userId}">
 
-    <select class="drugsList" th:name="drugId" >
+    <select class="drugsList" th:name="drugId">
         <option value="0">Select Drug</option>
-        <option th:each="drug : ${drugs}"  th:value="${drug.getDrugId()}" th:text="${drug.getDrugName()}"></option>
+        <option th:each="drug : ${drugs}" th:value="${drug.getDrugId()}" th:text="${drug.getDrugName()}"></option>
     </select>
     <button type="submit">Add Drug</button>
 </form>

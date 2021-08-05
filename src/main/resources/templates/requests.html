@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org"
-     >
-<head th:replace="fragment :: head" xmlns:th="http://www.w3.org/1999/xhtml" >
+>
+<head th:replace="fragment :: head" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <body style="display: flex; flex-direction: column; height: 100vh">
 <header th:replace="fragment :: header"></header>
 <div>
-<span th:if="${requests.size() == 0}"><h1>There is no pending requests</h1></span>
-<span th:unless="${requests.size() == 0}"></span></div>
+    <span th:if="${requests.size() == 0}"><h1>There is no pending requests</h1></span>
+    <span th:unless="${requests.size() == 0}"></span></div>
 
 <!--<h1 th:text="'You have '+${requests.size()}+' requests'"></h1>-->
 <div th:each="request: ${requests}">
@@ -16,8 +16,8 @@
         <p th:text="'Created at: '+${request.getCreatedAt()}"></p>
         <input type="hidden" th:value="${request.patient.getId()}" name="id">
         <input type="hidden" th:value="${request}" name="request">
-        <input  type="submit"  th:value="Accept" name="accepted">
-        <input  type="submit"  th:value="Ignore" name="accepted">
+        <input type="submit" th:value="Accept" name="accepted">
+        <input type="submit" th:value="Ignore" name="accepted">
 
 
     </form>

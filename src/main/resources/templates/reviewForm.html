@@ -9,22 +9,22 @@
 <header th:replace="fragment :: header"></header>
 
 <div style="display: flex; flex-direction: column; height: 50vh ;margin-top: 10%" class="login-form">
-  <fieldset>
-    <legend style="font-size: x-large">Add Review</legend>
-    <form action="#" style="width: 45%;margin: auto" th:action="@{/addReviews}" method="post">
-      <label>Doctor Name</label>
-      <select class="form-control" name="id">
-        <option th:each="doctor:${doctors}" th:text="${doctor.getFullName()}"
-                th:value="${doctor.getId()}"></option>
-      </select>
-      <br>
-      <label>Review</label>
-      <textArea class="form-control" name="body"></textArea>
-      <input type="submit">
-      <br>
-      <br>
-    </form>
-  </fieldset>
+    <fieldset>
+        <legend style="font-size: x-large">Add Review</legend>
+        <form action="#" style="width: 45%;margin: auto" th:action="@{/addReviews}" method="post">
+            <label>Doctor Name</label>
+            <select class="form-control" name="id">
+                <option th:each="doctor:${doctors}" th:text="${doctor.getFullName()}"
+                        th:value="${doctor.getId()}"></option>
+            </select>
+            <br>
+            <label>Review</label>
+            <textArea class="form-control" name="body"></textArea>
+            <input type="submit">
+            <br>
+            <br>
+        </form>
+    </fieldset>
 </div>
 
 <footer th:replace="fragment :: footer"></footer>

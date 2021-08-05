@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="http://www.w3.org/1999/xhtml">
-<head th:replace="fragment :: head" >
+<head th:replace="fragment :: head">
 <body>
 <header th:replace="fragment :: header"></header>
 <main style="margin-top: 10%">
     <table>
         <tr>
-            <th> First Name </th>
+            <th> First Name</th>
             <th> Last Name</th>
             <th> date Of Birth</th>
-            <th> Location </th>
+            <th> Location</th>
             <th> Blood Type</th>
 
         </tr>
@@ -36,7 +36,7 @@
             <td th:text="${record.id} "></td>
             <td th:text="${record.visitDate} "></td>
             <td th:text="${record.medicalDiagosis} "></td>
-            <td >
+            <td>
                 <ul th:each="drug:${user.drugs}">
                     <li th:text="${drug.drugName} "></li>
                 </ul>
@@ -69,12 +69,14 @@
 
     <hr style="color: black">
 
-    <div style="display: flex; flex-direction: column; height: 50vh ;margin-top: 10%; width: 40%; margin: auto"  sec:authorize ="hasAuthority('DOCTOR')">
+    <div style="display: flex; flex-direction: column; height: 50vh ;margin-top: 10%; width: 40%; margin: auto"
+         sec:authorize="hasAuthority('DOCTOR')">
 
-        <form  th:method="post" th:action="@{/addrecord/{id}(id=${user.id})}" >
+        <form th:method="post" th:action="@{/addrecord/{id}(id=${user.id})}">
 
-            <label  th:for="diagnostic"> Medical Diagnostic: </label>
-            <textarea class="form-control"  th:name="diagnostic" th:id="diagnostic" rows="4" cols="50" placeholder="Add Medical Diagnostic">
+            <label th:for="diagnostic"> Medical Diagnostic: </label>
+            <textarea class="form-control" th:name="diagnostic" th:id="diagnostic" rows="4" cols="50"
+                      placeholder="Add Medical Diagnostic">
 
             </textarea>
             <br>
@@ -83,19 +85,19 @@
         </form>
         <br>
 
-        <form th:action="@{/addDrug}" method="post" >
+        <form th:action="@{/addDrug}" method="post">
             <input type="hidden" th:name="userId" th:value="${user.Id}">
 
-            <select class="form-control" th:name="drugId" >
+            <select class="form-control" th:name="drugId">
                 <option value="0">Select Drug</option>
-                <option th:each="drug : ${drugs}"  th:value="${drug.getDrugId()}" th:text="${drug.getDrugName()}"></option>
+                <option th:each="drug : ${drugs}" th:value="${drug.getDrugId()}"
+                        th:text="${drug.getDrugName()}"></option>
             </select>
             <br>
             <button type="submit">Add Drug</button>
         </form>
 
     </div>
-
 
 
 </main>
